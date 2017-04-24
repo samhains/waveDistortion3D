@@ -28,15 +28,19 @@ public:
     ofPixels fboPixels;
     ofFbo fbo;
     ofMesh mesh;
-    ofxFloatSlider noiseAmp1, freqYe, freqX1, speed1, speed2r noiseAmp freqY2, freqX2;
+    ofxFloatSlider noiseAmp1, freqY1, freqX1, speed1, speed2, noiseAmp2, freqY2, freqX2;
     ofxPanel gui;
-	
-private:
+    private:
     int width;
     int height;
     int W = 100; //Grid size
     int H = 100;
     int meshSize = 6;
+    float tiltCurrent = 0;
+    float tiltTarget = 0;
+    float turnCurrent = 1;
+    float turnTarget = 1;
+
 
 		
 };

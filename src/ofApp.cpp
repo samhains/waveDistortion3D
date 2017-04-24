@@ -61,7 +61,7 @@ void ofApp::update(){
             int noise1 = noiseAmp1 * ofNoise(x * freqX1, y * freqY1, ofGetElapsedTimef() * speed1);
             int noise2 = noiseAmp2 * ofNoise(x * freqX2, y * freqY2, ofGetElapsedTimef() * speed2);
             //int noise2 = 0 * ofNoise(x, y, ofGetElapsedTimef() * 0.2 );
-            int noise =  noise1 + noise2;
+            int noise =  noise1 - noise2;
             
 
 
@@ -89,6 +89,10 @@ void ofApp::draw(){
  
     //fbo.draw(0, 0);
     ofPushMatrix();
+    tiltCurrent = ofLerp(tiltCurrent, tiltTarget, 0.1);
+    turnCurrent = ofLerp(turnCurrent, turnTarget, 0.1);
+    ofRotateX(tiltCurrent);
+    ofRotateZ(turnCurrent);
     ofTranslate( ofGetWidth()/2, ofGetHeight()/2, 0);
     image.bind();
     mesh.draw();
@@ -99,7 +103,15 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    if (key == OF_KEY_DOWN){
+        tiltTarget -= 5;
+    } else if (key == OF_KEY_UP){
+        tiltTarget += 5;
+    } else if (key == OF_KEY_LEFT){
+        turnTarget -= 5;
+    } else if (key == OF_KEY_RIGHT){
+        turnTarget += 5;
+    }
 }
 
 //--------------------------------------------------------------
