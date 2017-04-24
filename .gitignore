@@ -1,0 +1,9 @@
+.DS_Store
+Makefile
+Project.xcconfig
+addons.make
+bin/data/settings.xml
+bin/waveDistortion3DDebug.app/
+config.make
+openFrameworks-Info.plist
+waveDistortion3D.xcodeproj/
