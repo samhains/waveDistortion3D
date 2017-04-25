@@ -3,14 +3,12 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     cam.setDistance(0);
-    mesh[1].setup("2.mp4");
-    mesh[0].setup("1.mp4");
-    //meshSelect.addListener(paramListener, &ofApp::paramChanged);
     gui2.setup();
     gui2.add(meshSelect.set("Mesh select", 0, 0, NMESH ));
     meshSelect.addListener(this, &ofApp::meshSelectChanged);
     
     for(int i=0; i<NMESH; i++){
+        mesh[i].setup(i);
         noiseParameterGroup[i].add(mesh[i].noiseParameters1);
         noiseParameterGroup[i].add(mesh[i].noiseParameters2);
         noiseParameterGroup[i].setName("noise_"+to_string(i));

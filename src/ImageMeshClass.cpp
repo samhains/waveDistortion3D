@@ -1,8 +1,20 @@
 #include "ImageMeshClass.h"
 
-void ImageMeshClass::setup(string _videoName) {
-    videoName = _videoName;
+void ImageMeshClass::setup(int videoNum) {
+    videoName = to_string(videoNum)+".mp4";
+    if (settings.load("settings.xml")){
+        cout << "success with xml load" << endl;
+    } else {
+        cout << "fail with xml load" << endl;
+    }
+
+
     
+    //float val = settings.getValue<float>("tX");
+    settings.setToParent();
+    string path = "//position_"+to_string(videoNum)+"/group";
+    settings.setTo(path);
+
     
     noiseParameters1.add(noiseAmp1.set("noiseAmp1", 0, 0, 10));
     noiseParameters2.add(noiseAmp2.set("noiseAmp2", 0, 0, 10));
@@ -12,12 +24,14 @@ void ImageMeshClass::setup(string _videoName) {
     noiseParameters2.add(freqY2.set("freqY2", 0, 0, 1));
     noiseParameters1.add(speed1.set("speed1", 0, 0, 12));
     noiseParameters2.add(speed2.set("speed2", 0, 0, 12));
-    positionParameters.add(tX.set("tX", 0, -10000, 10000));
-    positionParameters.add(tY.set("tY", 0, -10000, 10000));
-    positionParameters.add(tZ.set("tZ", 0, -10000, 10000));
-    rotationParameters.add(rX.set("rX", 0, 0, 360));
-    rotationParameters.add(rY.set("rY", 0, 0, 360));
-    rotationParameters.add(rZ.set("rZ", 0, 0, 360));
+    
+
+    positionParameters.add(tX.set("tX", settings.getValue<float>("tX"), -10000, 10000));
+    positionParameters.add(tY.set("tY", settings.getValue<float>("tY"), -10000, 10000));
+    positionParameters.add(tZ.set("tZ", settings.getValue<float>("tZ"), -10000, 10000));
+    rotationParameters.add(rX.set("rX", settings.getValue<float>("rX"), 0, 360));
+    rotationParameters.add(rY.set("rY", settings.getValue<float>("rY"), 0, 360));
+    rotationParameters.add(rZ.set("rZ", settings.getValue<float>("rZ"), 0, 360));
 
 
     

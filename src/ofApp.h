@@ -3,7 +3,8 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "ImageMeshClass.h"
-#define NMESH 2
+
+#define NMESH 3 
 
 class ofApp : public ofBaseApp{
 

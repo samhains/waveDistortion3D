@@ -2,10 +2,10 @@
 
 class ImageMeshClass {
 public:
-    void setup(string videoName);
+    void setup(int videoNum);
     void draw();
     void update();
-    
+    ofXml settings;
     ofParameterGroup noiseParameters1;
     ofParameterGroup noiseParameters2;
     ofParameterGroup positionParameters;
@@ -21,14 +21,14 @@ public:
     ofParameter<float> freqY2;
     ofParameter<float> speed1;
     ofParameter<float> speed2;
+
+private:
     ofParameter<float> rX;
     ofParameter<float> rY;
     ofParameter<float> rZ;
     ofParameter<float> tX;
     ofParameter<float> tY;
     ofParameter<float> tZ;
-    
-private:
     
     string videoName;
     ofMesh mesh;
