@@ -1,18 +1,21 @@
 #include "ofApp.h"
+#include "Mesh/MeshUtils.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    cam.setDistance(0);
     video.load("1.mp4");
     video.play();
-    gui.setup();
-    gui.add(noiseAmp1.setup("noiseAmp1", 0, 0, 10));
-    gui.add(noiseAmp2.setup("noiseAmp2", 0, 0, 10));
-    gui.add(freqX1.setup("freqX1", 0, 0, 1));
-    gui.add(freqX2.setup("freqX2", 0, 0, 1));
-    gui.add(freqY1.setup("freqY1", 0, 0, 1));
-    gui.add(freqY2.setup("freqY2", 0, 0, 1));
-    gui.add(speed1.setup("speed1", 0, 0, 12));
-    gui.add(speed2.setup("speed2", 0, 0, 12));
+    gui1.setup();
+    gui2.setup();
+    gui1.add(noiseAmp1.setup("noiseAmp1", 0, 0, 10));
+    gui2.add(noiseAmp2.setup("noiseAmp2", 0, 0, 10));
+    gui1.add(freqX1.setup("freqX1", 0, 0, 1));
+    gui2.add(freqX2.setup("freqX2", 0, 0, 1));
+    gui1.add(freqY1.setup("freqY1", 0, 0, 1));
+    gui2.add(freqY2.setup("freqY2", 0, 0, 1));
+    gui1.add(speed1.setup("speed1", 0, 0, 12));
+    gui2.add(speed2.setup("speed2", 0, 0, 12));
     height = ofGetWindowHeight();
     width = ofGetWindowWidth();
 
@@ -22,23 +25,9 @@ void ofApp::setup(){
     ofClear(255,255,255, 0);
     fbo.end();
     
-	for (int y=0; y< H; y++) {
-		for (int x=0; x<W; x++) {
-            mesh.addVertex(ofPoint((x - W/2) * meshSize, (y - H/2) * meshSize, 0));
-            mesh.addTexCoord(ofPoint(x * (width / W), y * (height / H)));
-		}
-	}
     
-    for (int y=0; y < H-1; y++) {
-        for (int x=0; x<W-1; x++) {
-            int i1 = x + W * y;
-            int i2 = x+1 + W * y;
-            int i3 = x + W * (y+1);
-            int i4 = x+1 + W * (y+1);
-            mesh.addTriangle( i1, i2, i3 );
-            mesh.addTriangle( i2, i4, i3 );
-        }
-    }
+    MeshUtils::initializeMesh(H, W, height, width, meshSize, &mesh);
+	
 }
 
 //--------------------------------------------------------------
@@ -74,6 +63,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    cam.begin();
     ofBackground(0);
 	ofSetHexColor(0xffffff);
     if (video.isFrameNew()) {
@@ -86,32 +76,38 @@ void ofApp::draw(){
         ofDisableAlphaBlending();
         fbo.end();
     }
- 
+    
+
     //fbo.draw(0, 0);
     ofPushMatrix();
-    tiltCurrent = ofLerp(tiltCurrent, tiltTarget, 0.1);
-    turnCurrent = ofLerp(turnCurrent, turnTarget, 0.1);
-    ofRotateX(tiltCurrent);
-    ofRotateZ(turnCurrent);
-    ofTranslate( ofGetWidth()/2, ofGetHeight()/2, 0);
+    //tiltCurrent = ofLerp(tiltCurrent, tiltTarget, 0.1);
+    //turnCurrent = ofLerp(turnCurrent, turnTarget, 0.1);
+    ofRotateX(45);
+    ofRotateZ(0);
+    // ofTranslate( ofGetWidth()/2, ofGetHeight()/2, 0);
+    ofTranslate( 0, 0, -1000);
     image.bind();
     mesh.draw();
     image.unbind();
     ofPopMatrix();
-    gui.draw();
+    
+    cam.end();
+    gui1.draw();
+    gui2.draw();
+
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if (key == OF_KEY_DOWN){
-        tiltTarget -= 5;
-    } else if (key == OF_KEY_UP){
-        tiltTarget += 5;
-    } else if (key == OF_KEY_LEFT){
-        turnTarget -= 5;
-    } else if (key == OF_KEY_RIGHT){
-        turnTarget += 5;
-    }
+//    if (key == OF_KEY_DOWN){
+//        tiltTarget -= 5;
+//    } else if (key == OF_KEY_UP){
+//        tiltTarget += 5;
+//    } else if (key == OF_KEY_LEFT){
+//        turnTarget -= 5;
+//    } else if (key == OF_KEY_RIGHT){
+//        turnTarget += 5;
+//    }
 }
 
 //--------------------------------------------------------------

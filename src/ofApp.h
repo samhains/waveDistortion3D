@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
+#include "ImageMeshClass.h"
 
 class ofApp : public ofBaseApp{
 
@@ -10,6 +11,7 @@ public:
     void setup();
     void update();
     void draw();
+    void initializeMesh(int H, int W, int height, int width,  int meshSize, ofMesh *mesh);
 
     void keyPressed(int key);
     void keyReleased(int key);
@@ -29,7 +31,10 @@ public:
     ofFbo fbo;
     ofMesh mesh;
     ofxFloatSlider noiseAmp1, freqY1, freqX1, speed1, speed2, noiseAmp2, freqY2, freqX2;
-    ofxPanel gui;
+    ofxPanel gui1;
+    ofxPanel gui2;
+    ofEasyCam cam;
+
     private:
     int width;
     int height;
@@ -40,6 +45,8 @@ public:
     float tiltTarget = 0;
     float turnCurrent = 1;
     float turnTarget = 1;
+    
+    ImageMeshClass mesh1;
 
 
 		
