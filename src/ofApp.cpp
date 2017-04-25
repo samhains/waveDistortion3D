@@ -3,12 +3,14 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     cam.setDistance(0);
-    mesh2.setup("2.mp4", 0, 40, -1000, 0, 30, 0);
-    mesh.setup("1.mp4", 0, 0, 0, 0, 0, 0);
+    mesh[1].setup("2.mp4", 0, 40, -1000, 0, 30, 0);
+    mesh[0].setup("1.mp4", 0, 0, 0, 0, 0, 0);
+//    for(int i=0; i<NBALLS; i++){
+//        mesh[i].setup();
+//    }
     
-    
-    noiseParameterGroup.add(mesh.noiseParameters1);
-    noiseParameterGroup.add(mesh.noiseParameters2);
+    noiseParameterGroup.add(mesh[0].noiseParameters1);
+    noiseParameterGroup.add(mesh[0].noiseParameters2);
     
 
     gui1.setup(noiseParameterGroup);
@@ -18,9 +20,9 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-   	mesh.update();
-    mesh2.update();
-
+    for(int i=0; i<NMESH; i++){
+        mesh[i].update();
+    }
 
 }
 
@@ -28,8 +30,9 @@ void ofApp::update(){
 void ofApp::draw(){
     cam.begin();
     ofBackground(0);
-	mesh.draw();
-    mesh2.draw();
+    for(int i=0; i<NMESH; i++){
+        mesh[i].draw();
+    }
     
     cam.end();
     gui1.draw();

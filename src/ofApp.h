@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "ImageMeshClass.h"
+#define NMESH 2
 
 class ofApp : public ofBaseApp{
 
@@ -28,10 +29,8 @@ public:
     ofxPanel gui2;
     ofParameterGroup noiseParameterGroup;
     ofEasyCam cam;
-
-    ImageMeshClass mesh;
-    ImageMeshClass mesh2;
     
+    ImageMeshClass mesh[NMESH];
 
     private:
     float tiltCurrent = 0;
