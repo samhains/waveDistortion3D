@@ -3,21 +3,36 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     cam.setDistance(0);
-    mesh[1].setup("2.mp4", 0, 40, -1000, 0, 30, 0);
-    mesh[0].setup("1.mp4", 0, 0, 0, 0, 0, 0);
-//    for(int i=0; i<NBALLS; i++){
-//        mesh[i].setup();
-//    }
+    mesh[1].setup("2.mp4");
+    mesh[0].setup("1.mp4");
+    //meshSelect.addListener(paramListener, &ofApp::paramChanged);
+    gui2.setup();
+    gui2.add(meshSelect.set("Mesh select", 0, 0, NMESH ));
+    meshSelect.addListener(this, &ofApp::meshSelectChanged);
     
-    noiseParameterGroup.add(mesh[0].noiseParameters1);
-    noiseParameterGroup.add(mesh[0].noiseParameters2);
+    for(int i=0; i<NMESH; i++){
+        noiseParameterGroup[i].add(mesh[i].noiseParameters1);
+        noiseParameterGroup[i].add(mesh[i].noiseParameters2);
+        noiseParameterGroup[i].setName("noise_"+to_string(i));
+        positionParameterGroup[i].add(mesh[i].positionParameters);
+        positionParameterGroup[i].add(mesh[i].rotationParameters);
+        positionParameterGroup[i].setName("position_"+to_string(i));
+    }
+    
     
 
-    gui1.setup(noiseParameterGroup);
+    gui1.setup(noiseParameterGroup[meshSelect]);
+    gui3.setup(positionParameterGroup[meshSelect]);
    	
 	
 }
 
+//--------------------------------------------------------------
+void ofApp::meshSelectChanged(int & meshSelect){
+    gui1.setup(noiseParameterGroup[meshSelect]);
+    gui3.setup(positionParameterGroup[meshSelect]);
+
+}
 //--------------------------------------------------------------
 void ofApp::update(){
     for(int i=0; i<NMESH; i++){
@@ -36,6 +51,9 @@ void ofApp::draw(){
     
     cam.end();
     gui1.draw();
+    gui2.draw();
+    gui3.draw();
+
 
 }
 

@@ -1,14 +1,7 @@
 #include "ImageMeshClass.h"
 
-void ImageMeshClass::setup(string _videoName, int _tX, int _tY, int _tZ, int _rY, int _rX, int _rZ) {
+void ImageMeshClass::setup(string _videoName) {
     videoName = _videoName;
-    
-    tX = _tX;
-    tY = _tY;
-    tZ = _tZ;
-    rX = _rX;
-    rY = _rY;
-    rZ = _rZ;
     
     
     noiseParameters1.add(noiseAmp1.set("noiseAmp1", 0, 0, 10));
@@ -19,6 +12,13 @@ void ImageMeshClass::setup(string _videoName, int _tX, int _tY, int _tZ, int _rY
     noiseParameters2.add(freqY2.set("freqY2", 0, 0, 1));
     noiseParameters1.add(speed1.set("speed1", 0, 0, 12));
     noiseParameters2.add(speed2.set("speed2", 0, 0, 12));
+    positionParameters.add(tX.set("tX", 0, -10000, 10000));
+    positionParameters.add(tY.set("tY", 0, -10000, 10000));
+    positionParameters.add(tZ.set("tZ", 0, -10000, 10000));
+    rotationParameters.add(rX.set("rX", 0, 0, 360));
+    rotationParameters.add(rY.set("rY", 0, 0, 360));
+    rotationParameters.add(rZ.set("rZ", 0, 0, 360));
+
 
     
     video.load(videoName);

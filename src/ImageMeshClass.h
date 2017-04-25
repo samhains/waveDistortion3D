@@ -2,12 +2,16 @@
 
 class ImageMeshClass {
 public:
-    void setup(string _videoName, int _tX, int _tY, int _tZ, int _rY, int _rX, int _rZ);
+    void setup(string videoName);
     void draw();
     void update();
     
     ofParameterGroup noiseParameters1;
     ofParameterGroup noiseParameters2;
+    ofParameterGroup positionParameters;
+    ofParameterGroup rotationParameters;
+
+
     
     ofParameter<float> noiseAmp1;
     ofParameter<float> noiseAmp2;
@@ -17,15 +21,15 @@ public:
     ofParameter<float> freqY2;
     ofParameter<float> speed1;
     ofParameter<float> speed2;
-
+    ofParameter<float> rX;
+    ofParameter<float> rY;
+    ofParameter<float> rZ;
+    ofParameter<float> tX;
+    ofParameter<float> tY;
+    ofParameter<float> tZ;
     
 private:
-    int rX;
-    int rY;
-    int rZ;
-    int tX;
-    int tY;
-    int tZ;
+    
     string videoName;
     ofMesh mesh;
     ofVideoPlayer video;

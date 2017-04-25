@@ -22,12 +22,16 @@ public:
     void mouseExited(int x, int y);
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
+    void meshSelectChanged(int & meshSelect);
+
     void gotMessage(ofMessage msg);
     
-//    ofxFloatSlider noiseAmp1, freqY1, freqX1, speed1, speed2, noiseAmp2, freqY2, freqX2;
+    ofParameter<int> meshSelect;
     ofxPanel gui1;
     ofxPanel gui2;
-    ofParameterGroup noiseParameterGroup;
+    ofxPanel gui3;
+    ofParameterGroup noiseParameterGroup[NMESH];
+    ofParameterGroup positionParameterGroup[NMESH];
     ofEasyCam cam;
     
     ImageMeshClass mesh[NMESH];
