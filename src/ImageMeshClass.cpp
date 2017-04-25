@@ -1,6 +1,15 @@
 #include "ImageMeshClass.h"
 
-void ImageMeshClass::setup() {
+void ImageMeshClass::setup(string _videoName, int _tX, int _tY, int _tZ, int _rY, int _rX, int _rZ) {
+    videoName = _videoName;
+    
+    tX = _tX;
+    tY = _tY;
+    tZ = _tZ;
+    rX = _rX;
+    rY = _rY;
+    rZ = _rZ;
+    
     
     noiseParameters1.add(noiseAmp1.set("noiseAmp1", 0, 0, 10));
     noiseParameters2.add(noiseAmp2.set("noiseAmp2", 0, 0, 10));
@@ -12,8 +21,7 @@ void ImageMeshClass::setup() {
     noiseParameters2.add(speed2.set("speed2", 0, 0, 12));
 
     
-    
-    video.load("1.mp4");
+    video.load(videoName);
     video.play();
     height = ofGetWindowHeight();
     width = ofGetWindowWidth();
@@ -79,9 +87,10 @@ void ImageMeshClass::draw(){
     }
     
     ofPushMatrix();
-    ofRotateX(45);
-    ofRotateZ(0);
-    ofTranslate( 0, 0, -1000);
+    ofRotateX(rX);
+    ofRotateY(rY);
+    ofRotateZ(rZ);
+    ofTranslate( tX, tY, tZ);
     image.bind();
     mesh.draw();
     image.unbind();

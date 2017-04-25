@@ -2,7 +2,7 @@
 
 class ImageMeshClass {
 public:
-    void setup();
+    void setup(string _videoName, int _tX, int _tY, int _tZ, int _rY, int _rX, int _rZ);
     void draw();
     void update();
     
@@ -20,6 +20,13 @@ public:
 
     
 private:
+    int rX;
+    int rY;
+    int rZ;
+    int tX;
+    int tY;
+    int tZ;
+    string videoName;
     ofMesh mesh;
     ofVideoPlayer video;
     ofImage image;
@@ -27,7 +34,7 @@ private:
     ofPixels fboPixels;
     int width;
     int height;
-    int W = 100; //Grid size
     int H = 100;
+    int W = 100;
     int meshSize = 6;
 };

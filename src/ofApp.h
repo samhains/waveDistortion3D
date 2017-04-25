@@ -30,6 +30,7 @@ public:
     ofEasyCam cam;
 
     ImageMeshClass mesh;
+    ImageMeshClass mesh2;
     
 
     private:

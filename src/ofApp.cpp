@@ -3,7 +3,10 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     cam.setDistance(0);
-    mesh.setup();
+    mesh2.setup("2.mp4", 0, 40, -1000, 0, 30, 0);
+    mesh.setup("1.mp4", 0, 0, 0, 0, 0, 0);
+    
+    
     noiseParameterGroup.add(mesh.noiseParameters1);
     noiseParameterGroup.add(mesh.noiseParameters2);
     
@@ -16,6 +19,7 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
    	mesh.update();
+    mesh2.update();
 
 
 }
@@ -24,8 +28,8 @@ void ofApp::update(){
 void ofApp::draw(){
     cam.begin();
     ofBackground(0);
-	ofSetHexColor(0xffffff);
 	mesh.draw();
+    mesh2.draw();
     
     cam.end();
     gui1.draw();
