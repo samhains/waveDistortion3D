@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "ImageMeshClass.h"
+#include "ofxGameCamera.h"
 
 #define NMESH 3 
 
@@ -33,7 +34,8 @@ public:
     ofxPanel gui3;
     ofParameterGroup noiseParameterGroup[NMESH];
     ofParameterGroup positionParameterGroup[NMESH];
-    ofEasyCam cam;
+    ofxGameCamera cam;
+    //ofEasyCam cam;
     
     ImageMeshClass mesh[NMESH];
 
