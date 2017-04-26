@@ -10,8 +10,6 @@ public:
     ofParameterGroup noiseParameters2;
     ofParameterGroup positionParameters;
     ofParameterGroup rotationParameters;
-
-
     
     ofParameter<float> noiseAmp1;
     ofParameter<float> noiseAmp2;

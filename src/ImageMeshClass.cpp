@@ -1,21 +1,27 @@
 #include "ImageMeshClass.h"
+#include <random>
+
 
 void ImageMeshClass::setup(int videoNum, string sceneName) {
     
-    videoName = to_string(videoNum)+".mp4";
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_real_distribution<double> dist(0, 9);
+    int num = dist(mt);
+    
+    videoName = to_string(num)+".mp4";
+    cout << "num " << num << endl;
     if (settings.load("settings.xml")){
         cout << "success with xml load" << endl;
     } else {
         cout << "fail with xml load" << endl;
     }
-
     
     //float val = settings.getValue<float>("tX");
     settings.setToParent();
     string path = "//"+sceneName+"_noise_"+to_string(videoNum)+"/group";
     cout << "pth>>" << path << endl;
     settings.setTo(path);
-
     
     noiseParameters1.add(noiseAmp1.set("noiseAmp1", settings.getValue<float>("noiseAmp1"), 0, 7));
     noiseParameters2.add(noiseAmp2.set("noiseAmp2", settings.getValue<float>("noiseAmp2"), 0, 7));
