@@ -5,7 +5,6 @@
 #include "Scene.h"
 #include "ofxFirstPersonCamera.h"
 
-#define NMESH 5
 #define NSCENE 5
 
 class ofApp : public ofBaseApp{
@@ -14,6 +13,8 @@ public:
     void setup();
     void update();
     void draw();
+    void setGuiPosition();
+    void setSceneParams(int meshSelect);
 
     void keyPressed(int key);
     void keyReleased(int key);
@@ -28,6 +29,7 @@ public:
     void meshSelectChanged(int & meshSelect);
 
     void gotMessage(ofMessage msg);
+    int sceneNum = 0;
     Scene scenes[NSCENE];
     
     ofParameter<int> meshSelect;

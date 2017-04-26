@@ -1,6 +1,7 @@
 #include "ImageMeshClass.h"
 
-void ImageMeshClass::setup(int videoNum) {
+void ImageMeshClass::setup(int videoNum, string sceneName) {
+    
     videoName = to_string(videoNum)+".mp4";
     if (settings.load("settings.xml")){
         cout << "success with xml load" << endl;
@@ -11,7 +12,8 @@ void ImageMeshClass::setup(int videoNum) {
     
     //float val = settings.getValue<float>("tX");
     settings.setToParent();
-    string path = "//noise_"+to_string(videoNum)+"/group";
+    string path = "//"+sceneName+"_noise_"+to_string(videoNum)+"/group";
+    cout << "pth>>" << path << endl;
     settings.setTo(path);
 
     
@@ -25,7 +27,7 @@ void ImageMeshClass::setup(int videoNum) {
     noiseParameters2.add(speed2.set("speed2", settings.getValue<float>("speed2"), 0, 12));
     
     settings.setToParent();
-    path = "//position_"+to_string(videoNum)+"/group";
+    path = "//"+sceneName+"_position_"+to_string(videoNum)+"/group";
     settings.setTo(path);
 
     positionParameters.add(tX.set("tX", settings.getValue<float>("tX"), -10000, 10000));
@@ -102,15 +104,16 @@ void ImageMeshClass::draw(){
         fbo.end();
     }
 
-    
     ofPushMatrix();
+    ofTranslate( tX, tY, tZ);
 
     ofRotateX(rX);
     ofRotateY(rY);
     ofRotateZ(rZ);
-    ofTranslate( tX, tY, tZ);
+    
     image.bind();
     mesh.draw();
     image.unbind();
+    
     ofPopMatrix();
 }

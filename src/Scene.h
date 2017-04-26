@@ -1,8 +1,10 @@
 #include "ofMain.h"
 #include "ImageMeshClass.h"
-#define NMESH 5
+
+#define NMESH 3
 
 class Scene {
+    
 public:
 	ofParameterGroup noiseParameterGroup[NMESH];
     ofParameterGroup positionParameterGroup[NMESH];

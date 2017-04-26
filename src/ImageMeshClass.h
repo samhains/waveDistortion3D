@@ -2,7 +2,7 @@
 
 class ImageMeshClass {
 public:
-    void setup(int videoNum);
+    void setup(int videoNum, string sceneName);
     void draw();
     void update();
     ofXml settings;
