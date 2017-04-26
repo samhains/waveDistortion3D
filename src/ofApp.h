@@ -5,7 +5,7 @@
 #include "Scene.h"
 #include "ofxFirstPersonCamera.h"
 
-#define NSCENE 5
+#define NSCENE 3
 
 class ofApp : public ofBaseApp{
 

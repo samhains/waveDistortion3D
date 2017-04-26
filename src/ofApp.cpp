@@ -7,8 +7,9 @@ void ofApp::setup(){
     for (int i = 0; i != NSCENE; i++) {
     	scenes[i].setup(i, 0);
     }
+    
     gui2.setup();
-    gui2.add(meshSelect.set("Mesh select", 0, 0, 9 ));
+    gui2.add(meshSelect.set("Mesh select", 0, 0, 6 ));
     meshSelect.addListener(this, &ofApp::meshSelectChanged);
 
     setSceneParams(meshSelect);
