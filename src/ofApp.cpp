@@ -1,6 +1,7 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
+
 void ofApp::setup(){
     //cam.setDistance(0);
     for (int i = 0; i != NSCENE; i++) {

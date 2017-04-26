@@ -17,13 +17,13 @@ void ImageMeshClass::setup(int videoNum, string sceneName) {
     settings.setTo(path);
 
     
-    noiseParameters1.add(noiseAmp1.set("noiseAmp1", settings.getValue<float>("noiseAmp1"), 0, 10));
-    noiseParameters2.add(noiseAmp2.set("noiseAmp2", settings.getValue<float>("noiseAmp2"), 0, 10));
-    noiseParameters1.add(freqX1.set("freqX1", settings.getValue<float>("freqX1"), 0, 1));
+    noiseParameters1.add(noiseAmp1.set("noiseAmp1", settings.getValue<float>("noiseAmp1"), 0, 7));
+    noiseParameters2.add(noiseAmp2.set("noiseAmp2", settings.getValue<float>("noiseAmp2"), 0, 7));
+    noiseParameters1.add(freqX1.set("freqX1", settings.getValue<float>("freqX1"), 0, 0.3));
     noiseParameters2.add(freqX2.set("freqX2", settings.getValue<float>("freqX2"), 0, 1));
-    noiseParameters1.add(freqY1.set("freqY1", settings.getValue<float>("freqY1"), 0, 1));
+    noiseParameters1.add(freqY1.set("freqY1", settings.getValue<float>("freqY1"), 0, 0.3));
     noiseParameters2.add(freqY2.set("freqY2", settings.getValue<float>("freqY2"), 0, 1));
-    noiseParameters1.add(speed1.set("speed1", settings.getValue<float>("speed1"), 0, 12));
+    noiseParameters1.add(speed1.set("speed1", settings.getValue<float>("speed1"), 0, 6));
     noiseParameters2.add(speed2.set("speed2", settings.getValue<float>("speed2"), 0, 12));
     
     settings.setToParent();
