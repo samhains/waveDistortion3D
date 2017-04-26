@@ -1,7 +1,7 @@
 #include "ofMain.h"
 #include "ImageMeshClass.h"
 
-#define NMESH 4
+#define NMESH 9
 
 class Scene {
 public:

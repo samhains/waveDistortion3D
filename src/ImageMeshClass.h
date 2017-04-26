@@ -2,10 +2,11 @@
 
 class ImageMeshClass {
 public:
-    void setup(int videoNum, string sceneName);
+    void setup(int videoNum, string sceneName, int H, int W, int meshSize);
     void draw();
     void update();
     ofXml settings;
+    
     ofParameterGroup noiseParameters1;
     ofParameterGroup noiseParameters2;
     ofParameterGroup positionParameters;
@@ -19,8 +20,12 @@ public:
     ofParameter<float> freqY2;
     ofParameter<float> speed1;
     ofParameter<float> speed2;
+    int H;
+    int W;
+    int meshSize;
 
 private:
+    
     ofParameter<float> rX;
     ofParameter<float> rY;
     ofParameter<float> rZ;
@@ -36,7 +41,4 @@ private:
     ofPixels fboPixels;
     int width;
     int height;
-    int H = 100;
-    int W = 100;
-    int meshSize = 6;
 };

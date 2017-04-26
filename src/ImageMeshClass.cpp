@@ -1,23 +1,24 @@
 #include "ImageMeshClass.h"
 #include <random>
 
-
-void ImageMeshClass::setup(int videoNum, string sceneName) {
+void ImageMeshClass::setup(int videoNum, string sceneName, int _H, int _W, int _meshSize) {
     
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_real_distribution<double> dist(0, 9);
+    std::uniform_real_distribution<double> dist(0, 13);
     int num = dist(mt);
     
+    H = _H;
+    W = _W;
+    meshSize = _meshSize;
+    
     videoName = to_string(num)+".mp4";
-    cout << "num " << num << endl;
     if (settings.load("settings.xml")){
         cout << "success with xml load" << endl;
     } else {
         cout << "fail with xml load" << endl;
     }
     
-    //float val = settings.getValue<float>("tX");
     settings.setToParent();
     string path = "//"+sceneName+"_noise_"+to_string(videoNum)+"/group";
     cout << "pth>>" << path << endl;
@@ -73,6 +74,10 @@ void ImageMeshClass::setup(int videoNum, string sceneName) {
 }
 
 void ImageMeshClass::update(){
+    cout << "W " << W << endl;
+    cout << "H " << H << endl;
+    cout << "meshSize " << meshSize << endl;
+    
     video.update();
     fbo.readToPixels(fboPixels);
     image.setFromPixels(fboPixels);

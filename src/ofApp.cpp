@@ -8,7 +8,7 @@ void ofApp::setup(){
     	scenes[i].setup(i, 0);
     }
     gui2.setup();
-    gui2.add(meshSelect.set("Mesh select", 0, 0, 3 ));
+    gui2.add(meshSelect.set("Mesh select", 0, 0, 9 ));
     meshSelect.addListener(this, &ofApp::meshSelectChanged);
 
     setSceneParams(meshSelect);
