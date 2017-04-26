@@ -3,9 +3,9 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "ImageMeshClass.h"
-#include "ofxGameCamera.h"
+#include "ofxFirstPersonCamera.h"
 
-#define NMESH 3 
+#define NMESH 5
 
 class ofApp : public ofBaseApp{
 
@@ -34,7 +34,7 @@ public:
     ofxPanel gui3;
     ofParameterGroup noiseParameterGroup[NMESH];
     ofParameterGroup positionParameterGroup[NMESH];
-    ofxGameCamera cam;
+    ofxFirstPersonCamera cam;
     //ofEasyCam cam;
     
     ImageMeshClass mesh[NMESH];

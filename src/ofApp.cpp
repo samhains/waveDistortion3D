@@ -3,7 +3,6 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     //cam.setDistance(0);
-    cam.setup();
     gui2.setup();
     gui2.add(meshSelect.set("Mesh select", 0, 0, NMESH ));
     meshSelect.addListener(this, &ofApp::meshSelectChanged);
@@ -78,6 +77,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
+    //cam.toggleControl();
 
 }
 

@@ -8,7 +8,6 @@ void ImageMeshClass::setup(int videoNum) {
         cout << "fail with xml load" << endl;
     }
 
-
     
     //float val = settings.getValue<float>("tX");
     settings.setToParent();
@@ -102,8 +101,10 @@ void ImageMeshClass::draw(){
         ofDisableAlphaBlending();
         fbo.end();
     }
+
     
     ofPushMatrix();
+
     ofRotateX(rX);
     ofRotateY(rY);
     ofRotateZ(rZ);
