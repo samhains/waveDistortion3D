@@ -3,50 +3,33 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     //cam.setDistance(0);
+	scenes[0].setup(0, 0);
     gui2.setup();
     gui2.add(meshSelect.set("Mesh select", 0, 0, NMESH ));
     meshSelect.addListener(this, &ofApp::meshSelectChanged);
-    
-    for(int i=0; i<NMESH; i++){
-        mesh[i].setup(i);
-        noiseParameterGroup[i].add(mesh[i].noiseParameters1);
-        noiseParameterGroup[i].add(mesh[i].noiseParameters2);
-        noiseParameterGroup[i].setName("noise_"+to_string(i));
-        positionParameterGroup[i].add(mesh[i].positionParameters);
-        positionParameterGroup[i].add(mesh[i].rotationParameters);
-        positionParameterGroup[i].setName("position_"+to_string(i));
-    }
-    
-    
 
-    gui1.setup(noiseParameterGroup[meshSelect]);
-    gui3.setup(positionParameterGroup[meshSelect]);
+    gui1.setup(scenes[0].noiseParameterGroup[meshSelect]);
+    gui3.setup(scenes[0].positionParameterGroup[meshSelect]);
    	
 	
 }
 
 //--------------------------------------------------------------
 void ofApp::meshSelectChanged(int & meshSelect){
-    gui1.setup(noiseParameterGroup[meshSelect]);
-    gui3.setup(positionParameterGroup[meshSelect]);
+    gui1.setup(scenes[0].noiseParameterGroup[meshSelect]);
+    gui3.setup(scenes[0].positionParameterGroup[meshSelect]);
 
 }
 //--------------------------------------------------------------
 void ofApp::update(){
-    for(int i=0; i<NMESH; i++){
-        mesh[i].update();
-    }
-
+	scenes[0].update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     cam.begin();
-    ofBackground(0);
-    for(int i=0; i<NMESH; i++){
-        mesh[i].draw();
-    }
-    
+		ofBackground(0);
+		scenes[0].draw();
     cam.end();
     gui1.draw();
     gui2.draw();
