@@ -21,8 +21,8 @@ void ImageMeshClass::setup(int videoNum, string sceneName, int _H, int _W, int _
     
     settings.setToParent();
     string path = "//"+sceneName+"_noise_"+to_string(videoNum)+"/group";
-    cout << "pth>>" << path << endl;
     settings.setTo(path);
+    
     
     noiseParameters1.add(noiseAmp1.set("noiseAmp1", settings.getValue<float>("noiseAmp1"), 0, 7));
     noiseParameters2.add(noiseAmp2.set("noiseAmp2", settings.getValue<float>("noiseAmp2"), 0, 7));
@@ -74,9 +74,6 @@ void ImageMeshClass::setup(int videoNum, string sceneName, int _H, int _W, int _
 }
 
 void ImageMeshClass::update(){
-    cout << "W " << W << endl;
-    cout << "H " << H << endl;
-    cout << "meshSize " << meshSize << endl;
     
     video.update();
     fbo.readToPixels(fboPixels);
