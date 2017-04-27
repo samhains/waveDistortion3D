@@ -3,9 +3,13 @@
 //--------------------------------------------------------------
 
 void ofApp::setup(){
-    //cam.setDistance(0);
     for (int i = 0; i != NSCENE; i++) {
-    	scenes[i].setup(i, 0);
+        if (i <= 1) {
+        	scenes[i].setup(i, 0, 7);
+        }
+        else if (i > 1) {
+        	scenes[i].setup(i, 0, 3);
+        }
     }
     
     gui2.setup();
@@ -19,8 +23,8 @@ void ofApp::setup(){
 
 void ofApp::setSceneParams(int meshSelect){
     cout << "meshSelect_" << meshSelect << endl;
-    gui1.setup(scenes[sceneNum].noiseParameterGroup[meshSelect]);
-    gui3.setup(scenes[sceneNum].positionParameterGroup[meshSelect]);
+    gui1.setup(scenes[sceneNum].noiseParameterGroups[meshSelect]);
+    gui3.setup(scenes[sceneNum].positionParameterGroups[meshSelect]);
 }
 
 void ofApp::setGuiPosition(){

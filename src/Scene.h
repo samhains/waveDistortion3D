@@ -1,14 +1,13 @@
 #include "ofMain.h"
 #include "ImageMeshClass.h"
 
-#define NMESH 7
-
 class Scene {
 public:
-	ofParameterGroup noiseParameterGroup[NMESH];
-    ofParameterGroup positionParameterGroup[NMESH];
-    ImageMeshClass mesh[NMESH];
-	void setup(int sceneNum, int meshSelect);
+    int nMesh;
+	vector<ofParameterGroup> noiseParameterGroups;
+    vector<ofParameterGroup> positionParameterGroups;
+    vector<ImageMeshClass> meshes;
+	void setup(int sceneNum, int meshSelect, int nMesh);
     void update();
     void draw();
 };
