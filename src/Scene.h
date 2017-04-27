@@ -9,7 +9,7 @@ public:
     vector<ImageMeshClass> meshes;
     void meshSetup(ImageMeshClass *mesh, int meshNum, int sceneNum);
 	void setup(int sceneNum, int meshSelect, int nMesh);
-    void update();
+    void update(AudioData audioData);
     void draw();
     string sceneName;
 };

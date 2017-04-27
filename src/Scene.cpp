@@ -43,9 +43,9 @@ void Scene::meshSetup(ImageMeshClass *mesh, int meshNum, int sceneNum){
         }
 }
 
-void Scene::update(){
+void Scene::update(AudioData audioData){
 	for(int i=0; i<nMesh; i++){
-		meshes[i].update();
+		meshes[i].update(audioData);
 	}
 }
 

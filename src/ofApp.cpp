@@ -16,6 +16,13 @@ void ofApp::setup(){
     gui2.add(meshSelect.set("Mesh select", 0, 0, scenes[0].nMesh));
     meshSelect.addListener(this, &ofApp::meshSelectChanged);
 
+
+    audioData.setup();
+    
+    beat.load("1_cropped.mp3");
+    
+    beat.setLoop(true);
+    beat.play();
     setSceneParams(meshSelect);
     setGuiPosition();
    	
@@ -44,14 +51,17 @@ void ofApp::meshSelectChanged(int & _meshSelect){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	scenes[sceneNum].update();
+    audioData.update();
+	scenes[sceneNum].update(audioData);
+  
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    
+	ofBackground(0);
     cam.begin();
-		ofBackground(0);
-		scenes[sceneNum].draw();
+	scenes[sceneNum].draw();
     cam.end();
     gui1.draw();
     gui2.draw();

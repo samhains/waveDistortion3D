@@ -1,10 +1,11 @@
 #include "ofMain.h"
+#include "AudioData.h"
 
 class ImageMeshClass {
 public:
     void setup(int videoNum, string sceneName, int H, int W, int meshSize);
     void draw();
-    void update();
+    void update(AudioData audioData);
     ofXml settings;
     
     ofParameterGroup noiseParameters1;

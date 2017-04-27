@@ -32,10 +32,14 @@ public:
     int sceneNum = 0;
     Scene scenes[NSCENE];
     
+    AudioData audioData;
     ofParameter<int> meshSelect;
     ofxPanel gui1;
     ofxPanel gui2;
     ofxPanel gui3;
     ofxFirstPersonCamera cam;
+    
+    ofSoundPlayer beat;
+
 		
 };

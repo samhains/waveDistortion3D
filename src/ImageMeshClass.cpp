@@ -73,7 +73,7 @@ void ImageMeshClass::setup(int videoNum, string sceneName, int _H, int _W, int _
     }
 }
 
-void ImageMeshClass::update(){
+void ImageMeshClass::update(AudioData audioData){
     
     video.update();
     fbo.readToPixels(fboPixels);
@@ -91,7 +91,10 @@ void ImageMeshClass::update(){
             int brightness = fboPixels[index] / 4;
             int noise1 = noiseAmp1 * ofNoise(x * freqX1, y * freqY1, ofGetElapsedTimef() * speed1);
             int noise2 = noiseAmp2 * ofNoise(x * freqX2, y * freqY2, ofGetElapsedTimef() * speed2);
-            int noise =  noise1 - noise2;
+            int noise =  noise1 + noise2;
+            for (int i=0; i< audioData.bands; i++) {
+                noise = noise + audioData.fftSmooth[i]*20;
+            }
             
             p.z  = brightness * noise;
             mesh.setVertex(i, p);
