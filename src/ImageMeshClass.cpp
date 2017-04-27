@@ -87,14 +87,14 @@ void ImageMeshClass::update(AudioData audioData){
             float scaleX = width / W;
             float scaleY = height / H;
             
-            float audioTotal = 0;
             float freqAudioNoise = 0;
             for (int i=0; i< audioData.bands; i++) {
-                float randVal = rand();
-                float audioNoise = ofMap(audioData.fftSmooth[i]*100, 0, 1, 0, 1, true);
-                freqAudioNoise += randVal*audioNoise;
-                audioTotal += sqrt(audioNoise);
+                freqAudioNoise += audioData.fftSmooth[i];
             }
+            
+            float audioTotal = ofMap(freqAudioNoise, 0.03, 0.11, 0, 1, true);
+            freqAudioNoise = ofMap(freqAudioNoise, 0.03, 0.11, 0, 0.03, true);
+            
             
             int index = ((x * scaleX) + width * (y * scaleY)) * 4;
             int brightness = fboPixels[index] / 4;

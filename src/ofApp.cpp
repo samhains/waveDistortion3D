@@ -14,7 +14,7 @@ void ofApp::setup(){
     
     meshSelect = 0;
     gui2.setup();
-    gui2.add(meshSelect.set("Mesh select", 0, 0, scenes[0].nMesh));
+    gui2.add(meshSelect.set("Mesh select", 0, 0, scenes[0].nMesh -1));
     meshSelect.addListener(this, &ofApp::meshSelectChanged);
 
 
@@ -43,7 +43,6 @@ void ofApp::setGuiPosition(){
 //--------------------------------------------------------------
 void ofApp::meshSelectChanged(int & _meshSelect){
     meshSelect = _meshSelect;
-    cout << "mesh eslect" << meshSelect << endl;
     setSceneParams();
     setGuiPosition();
 }
@@ -66,7 +65,6 @@ void ofApp::draw(){
     gui2.draw();
     gui3.draw();
 
-
 }
 
 //--------------------------------------------------------------
@@ -76,7 +74,6 @@ void ofApp::keyPressed(int key){
         if (sceneNum == NSCENE) {
             sceneNum = 0;
         }
-        cout << "sceneNum " << sceneNum << endl;
         setSceneParams();
         setGuiPosition();
         meshSelect.set("Mesh select", 0, 0, scenes[sceneNum].nMesh -1);
