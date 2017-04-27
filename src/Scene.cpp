@@ -1,8 +1,9 @@
 #include "Scene.h"
 
 void Scene::setup(int sceneNum, int meshSelect, int _nMesh) {
-	string sceneName = "scene_"+to_string(sceneNum);
+	sceneName = "scene_"+to_string(sceneNum);
 	nMesh = _nMesh;
+    cout << sceneName << " n mesh " << nMesh << endl;
 
 	// set up mesh and mesh parameters for the scene
 	for(int i=0; i<nMesh; i++){
@@ -12,13 +13,7 @@ void Scene::setup(int sceneNum, int meshSelect, int _nMesh) {
 		ofParameterGroup positionParameterGroup;
 
 		string iStr = to_string(i);
-        if (i < 3) {
-    		mesh.setup(i, sceneName, 10, 10, 60);
-        } else if (i < 4) {
-            mesh.setup(i, sceneName, 50, 50, 12);
-        } else {
-            mesh.setup(i, sceneName, 100, 100, 6);
-        }
+        meshSetup(&mesh, i, sceneNum);
         
 		noiseParameterGroup.add(mesh.noiseParameters1);
 		noiseParameterGroup.add(mesh.noiseParameters2);
@@ -32,6 +27,20 @@ void Scene::setup(int sceneNum, int meshSelect, int _nMesh) {
 		positionParameterGroups.push_back(positionParameterGroup);
 		noiseParameterGroups.push_back(noiseParameterGroup);
 	}
+}
+
+void Scene::meshSetup(ImageMeshClass *mesh, int meshNum, int sceneNum){
+        if(sceneNum < 2){
+                if (meshNum < 3) {
+            		mesh->setup(meshNum, sceneName, 10, 10, 60);
+                } else if (meshNum < 4) {
+                    mesh->setup(meshNum, sceneName, 50, 50, 12);
+                } else {
+                    mesh->setup(meshNum, sceneName, 100, 100, 6);
+                }
+        } else {
+            mesh->setup(meshNum, sceneName, 100, 100, 6);
+        }
 }
 
 void Scene::update(){

@@ -13,7 +13,7 @@ void ofApp::setup(){
     }
     
     gui2.setup();
-    gui2.add(meshSelect.set("Mesh select", 0, 0, 6 ));
+    gui2.add(meshSelect.set("Mesh select", 0, 0, scenes[0].nMesh));
     meshSelect.addListener(this, &ofApp::meshSelectChanged);
 
     setSceneParams(meshSelect);
@@ -22,9 +22,12 @@ void ofApp::setup(){
 }
 
 void ofApp::setSceneParams(int meshSelect){
-    cout << "meshSelect_" << meshSelect << endl;
     gui1.setup(scenes[sceneNum].noiseParameterGroups[meshSelect]);
     gui3.setup(scenes[sceneNum].positionParameterGroups[meshSelect]);
+    gui2.setup();
+    ofParameter<int> tmp;
+    tmp = meshSelect;
+    gui2.add(tmp.set("Mesh select", 0, 0, scenes[sceneNum].nMesh - 1));
 }
 
 void ofApp::setGuiPosition(){
