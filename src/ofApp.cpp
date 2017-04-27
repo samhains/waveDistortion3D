@@ -30,14 +30,18 @@ void ofApp::setup(){
 }
 
 void ofApp::setSceneParams(){
-    gui1.setup(scenes[sceneNum].noiseParameterGroups[meshSelect]);
-    gui3.setup(scenes[sceneNum].positionParameterGroups[meshSelect]);
+    if (guiShow == true) {
+        gui1.setup(scenes[sceneNum].noiseParameterGroups[meshSelect]);
+        gui3.setup(scenes[sceneNum].positionParameterGroups[meshSelect]);
+    }
 }
 
 void ofApp::setGuiPosition(){
-    gui1.setPosition(0, ofGetWindowHeight()-230);
-    gui2.setPosition(0, ofGetWindowHeight()-290);
-    gui3.setPosition(0, 0);
+    if (guiShow == true) {
+        gui1.setPosition(0, ofGetWindowHeight()-230);
+        gui2.setPosition(0, ofGetWindowHeight()-290);
+        gui3.setPosition(0, 0);
+    }
 }
 
 //--------------------------------------------------------------
@@ -61,9 +65,11 @@ void ofApp::draw(){
     cam.begin();
 	scenes[sceneNum].draw();
     cam.end();
-    gui1.draw();
-    gui2.draw();
-    gui3.draw();
+    if(guiShow == true) {
+        gui1.draw();
+        gui2.draw();
+        gui3.draw();
+    }
 
 }
 

@@ -31,6 +31,7 @@ public:
     void gotMessage(ofMessage msg);
     int sceneNum = 0;
     Scene scenes[NSCENE];
+    bool guiShow = true;
     
     AudioData audioData;
     ofParameter<int> meshSelect;
