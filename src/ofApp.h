@@ -14,7 +14,7 @@ public:
     void update();
     void draw();
     void setGuiPosition();
-    void setSceneParams(int meshSelect);
+    void setSceneParams();
 
     void keyPressed(int key);
     void keyReleased(int key);

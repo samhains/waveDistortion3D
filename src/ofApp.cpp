@@ -12,6 +12,7 @@ void ofApp::setup(){
         }
     }
     
+    meshSelect = 0;
     gui2.setup();
     gui2.add(meshSelect.set("Mesh select", 0, 0, scenes[0].nMesh));
     meshSelect.addListener(this, &ofApp::meshSelectChanged);
@@ -23,18 +24,14 @@ void ofApp::setup(){
     
     beat.setLoop(true);
     beat.play();
-    setSceneParams(meshSelect);
+    setSceneParams();
     setGuiPosition();
    	
 }
 
-void ofApp::setSceneParams(int meshSelect){
+void ofApp::setSceneParams(){
     gui1.setup(scenes[sceneNum].noiseParameterGroups[meshSelect]);
     gui3.setup(scenes[sceneNum].positionParameterGroups[meshSelect]);
-    gui2.setup();
-    ofParameter<int> tmp;
-    tmp = meshSelect;
-    gui2.add(tmp.set("Mesh select", 0, 0, scenes[sceneNum].nMesh - 1));
 }
 
 void ofApp::setGuiPosition(){
@@ -45,7 +42,9 @@ void ofApp::setGuiPosition(){
 
 //--------------------------------------------------------------
 void ofApp::meshSelectChanged(int & _meshSelect){
-    setSceneParams(meshSelect);
+    meshSelect = _meshSelect;
+    cout << "mesh eslect" << meshSelect << endl;
+    setSceneParams();
     setGuiPosition();
 }
 
@@ -77,8 +76,10 @@ void ofApp::keyPressed(int key){
         if (sceneNum == NSCENE) {
             sceneNum = 0;
         }
-        setSceneParams(meshSelect);
+        cout << "sceneNum " << sceneNum << endl;
+        setSceneParams();
         setGuiPosition();
+        meshSelect.set("Mesh select", 0, 0, scenes[sceneNum].nMesh -1);
     }
     if (key == OF_KEY_SHIFT) {
         cam.toggleControl();
