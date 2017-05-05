@@ -5,7 +5,7 @@
 #include "Scene.h"
 #include "ofxFirstPersonCamera.h"
 
-#define NSCENE 3
+#define NSCENE 4
 
 class ofApp : public ofBaseApp{
 
@@ -31,7 +31,7 @@ public:
     void gotMessage(ofMessage msg);
     int sceneNum = 0;
     Scene scenes[NSCENE];
-    bool guiShow = true;
+    bool guiShow = false;
     
     AudioData audioData;
     ofParameter<int> meshSelect;

@@ -2,17 +2,11 @@
 #include <random>
 
 void ImageMeshClass::setup(int videoNum, string sceneName, int _H, int _W, int _meshSize) {
-    
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_real_distribution<double> dist(0, 13);
-    int num = dist(mt);
-    
     H = _H;
     W = _W;
     meshSize = _meshSize;
     
-    videoName = to_string(num)+".mp4";
+    videoName = to_string(videoNum)+".mp4";
     if (settings.load("settings.xml")){
         cout << "success with xml load" << endl;
     } else {
@@ -24,6 +18,11 @@ void ImageMeshClass::setup(int videoNum, string sceneName, int _H, int _W, int _
     settings.setTo(path);
     
     
+    noiseParameters1.setName("noise_params_1");
+    noiseParameters2.setName("noise_params_2");
+    noiseParameters2.setName("noise_params_2");
+    positionParameters.setName("position_params");
+    rotationParameters.setName("rotation_params");
     noiseParameters1.add(noiseAmp1.set("noiseAmp1", settings.getValue<float>("noiseAmp1"), 0, 7));
     noiseParameters2.add(noiseAmp2.set("noiseAmp2", settings.getValue<float>("noiseAmp2"), 0, 7));
     noiseParameters1.add(freqX1.set("freqX1", settings.getValue<float>("freqX1"), 0, 0.3));

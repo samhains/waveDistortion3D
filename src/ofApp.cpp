@@ -6,8 +6,10 @@ void ofApp::setup(){
     for (int i = 0; i != NSCENE; i++) {
         if (i <= 1) {
         	scenes[i].setup(i, 0, 7);
+        } else if  (i == 3) {
+            scenes[i].setup(i, 0, 11);
         }
-        else if (i > 1) {
+        else {
         	scenes[i].setup(i, 0, 3);
         }
     }
